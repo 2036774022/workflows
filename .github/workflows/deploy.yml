@@ -1,0 +1,37 @@
+name: Deploy to ECS
+
+on:
+  push:
+    branches:
+      - main  # 触发部署的分支，可以根据需要调整
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and Deploy
+        env:
+          ECS_HOST: ${{8.138.154.135 }}
+          ECS_USER: ${{ root }}
+          ECS_KEY: ${{ Li102210 }}
+        run: |
+          # Build your application (if necessary)
+          # For example, if you use npm to build your app
+          # npm install
+          # npm run build
+          # For simplicity, we assume your application is already built
+
+          # Install SCP toolsecs
+          sudo apt-get update && sudo apt-get install -y openssh-client
+
+          # Create a temporary file to hold the private key
+          echo "$Li102210" > privatekey
+          chmod 600 privatekey
+
+          # Use SCP to copy the files to the ECS instance
+          scp -r -i privatekey -o StrictHostKeyChecking=no ./* $root@$8.138.154.135:/var/www/html
+
+          # Clean up the temporary file
+          rm privatekey
