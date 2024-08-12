@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build and Deploy
         env:
-          ECS_HOST: ${{8.138.154.135 }}
-          ECS_USER: ${{ root }}
-          ECS_KEY: ${{ Li102210 }}
+          ECS_HOST: ${{secrets.8.138.154.135 }}
+          ECS_USER: ${{ secrets.root }}
+          ECS_KEY: ${{ secrets.Li102210 }}
         run: |
           # Build your application (if necessary)
           # For example, if you use npm to build your app
